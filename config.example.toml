@@ -1,0 +1,61 @@
+# COWMAN Network Security Command Center Configuration
+# Copy this file to ~/.cowman/config.toml or ./cowman.toml to customize settings.
+
+[general]
+# Interface name to bind/monitor. Leave empty for auto-detection of default active interface.
+interface = ""
+# Path to SQLite database. Supports ~ home expansion.
+database_path = "~/.cowman/cowman.db"
+# Logging level: DEBUG, INFO, WARNING, ERROR
+log_level = "INFO"
+
+[discovery]
+# Default probe timeout in seconds
+timeout = 1.5
+# ARP request retry count
+retries = 2
+# Optional CIDR subnet override (e.g., "192.168.1.0/24"). If empty, calculated from active interface.
+subnet_override = ""
+# Concurrency limit for active host checks
+max_workers = 64
+
+[port_scan]
+# Default connection timeout in seconds per port
+timeout = 0.8
+# Maximum concurrent port checks
+concurrency = 100
+# Default common ports scanned when no list is provided
+default_ports = [
+    21, 22, 23, 25, 53, 80, 110, 135, 139, 143, 443, 445,
+    993, 995, 1433, 1521, 3306, 3389, 5432, 5900, 8000, 8080, 8443
+]
+
+[monitor]
+# Live dashboard poll interval in seconds
+interval = 1.0
+# Number of top remote destinations to display
+top_destinations_limit = 10
+
+[dns]
+# DNS sniffer capture buffer size
+buffer_size = 256
+# Flag potential DNS tunnel / DGA if query domain name exceeds this length
+domain_length_alert_threshold = 45
+# Shannon entropy threshold for suspicious domain names
+entropy_alert_threshold = 3.8
+
+[security]
+# Ports considered unexpected or risky if open (triggers HIGH/MEDIUM alerts)
+unexpected_ports = [21, 23, 135, 139, 445, 5900]
+# Bandwidth spike threshold in MB/s
+bandwidth_spike_mb = 50.0
+# Connection count anomaly threshold
+connection_count_threshold = 500
+
+[ui]
+# Terminal theme: "dark_soc", "matrix_green", "cyber_punk"
+theme = "dark_soc"
+# Display ASCII banner on launch
+show_banner = true
+# Enable sound/bell on CRITICAL alert (true/false)
+alert_bell = false
