@@ -9,7 +9,7 @@ description = "Terminal SOC & Network Security Command Center"
 readme = "README.md"
 license = { text = "MIT" }
 authors = [
-    { name = "COWMAN Security Team", email = "security@cowman.local" }
+    { name = "opuntake A.T", email = "topuntake@gmail.com" }
 ]
 requires-python = ">=3.12"
 dependencies = [
